@@ -26,8 +26,8 @@ production:
   adapter: postgresql
   encoding: unicode
   pool: 5
-  database: task-bord_production
-  username: task-bord
+  database: Task-bord_production
+  username: Task-bord
   password: <%= ENV['TASK-BORD_DATABASE_PASSWORD'] %>
 
 # Warning: The database defined as "test" will be erased and
