@@ -20,6 +20,15 @@ default: &default
 development:
   <<: *default
   database: Task-bord_development
+  
+production:
+  <<: *default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  database: task-bord_production
+  username: task-bord
+  password: <%= ENV['TASK-BORD_DATABASE_PASSWORD'] %>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
