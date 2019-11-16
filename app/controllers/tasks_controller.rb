@@ -3,7 +3,7 @@ class TasksController < ApplicationController
     before_action :require_user_logged_in, only: [:index, :show]
 
     def index
-        @tasks = Task.all.page(params[:page]).per(7)
+        @tasks = Task.where(id:session[:user_id]).page(params[:page]).per(7)
     end
     
     def show
@@ -14,7 +14,7 @@ class TasksController < ApplicationController
     end
     
     def create
-        @task = Task.new(task_params)
+        @task = current_user.tasks.build(task_params)
         
         if @task.save
             flash[:success] = 'タスクが正常に作成されました'
@@ -53,6 +53,6 @@ class TasksController < ApplicationController
     end
     
     def task_params
-        params.require(:task).permit(:content, :status)
+        params.require(:task).permit(:content, :status, :user_id)
     end
 end
