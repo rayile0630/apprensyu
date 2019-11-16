@@ -3,7 +3,7 @@ class TasksController < ApplicationController
     before_action :require_user_logged_in, only: [:index, :show]
 
     def index
-        @tasks = Task.where(user_id:current_user.tasks).page(params[:page]).per(7)
+        @tasks = Task.where(user_id: current_user.id).page(params[:page]).per(7)
     end
     
     def show
